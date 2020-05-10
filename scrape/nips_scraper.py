@@ -9,63 +9,92 @@ import argparse
 
 ######### Arguments #########
 parser = argparse.ArgumentParser(description="PaperViz Scrapper")
+
 parser.add_argument('--url',
     default="https://papers.nips.cc/book/advances-in-neural-information-processing-systems-32-2019",
-    help="URL for the Neurips conference website to be parsed.")
+    help="URL for the conference website to be parsed.")
 
-parser.add_argument('--year',
-    default="2019",
-    help="Year of Neurips Conference")
+parser.add_argument('--getpdf',     action='store_true',    default=False,      help="Download all papers in pdf format")
+parser.add_argument('--conf_name',                          default="NeurIPS",  help="Save directory for downloading the papers")
 
 args = parser.parse_args()
-
 #############################
 
-conf_url = args.url
+year = args.url[-4:]
 
-r = requests.get(conf_url)
-soup_nips19 = BeautifulSoup(r.content, "html.parser")
+savedir = args.conf_name + "_" + year
+if args.getpdf:
+    if not os.path.exists(savedir):
+        os.mkdir(savedir)
+
+r = requests.get(args.url)
+soup_nips = BeautifulSoup(r.content, "html.parser")
 
 urls = []
-for url in soup_nips19.find_all('a'):
+for url in soup_nips.find_all('a'):
     urls.append(url.get('href'))
 
 paper_links = []
 for url in urls:
     if url.startswith('/paper'):
-        paper_links.append("https://papers.nips.cc"+url)
+        paper_links.append("https://papers.nips.cc" + url)
 
 # Initialize Empty Dictionary
 conf_dict = {}
+error_dict = {}
+errors = False
 
 for idx, link in enumerate(tqdm(paper_links)):
     try:
         get_links = requests.get(link)
         link_soup = BeautifulSoup(get_links.content, "html.parser")
         
-        paper_title = link_soup.find(class_='subtitle').text
-        paper_abstract = link_soup.find(class_ = 'abstract').text
+        paper_id = link.replace("https://papers.nips.cc/paper/", "")[:4]
         
+        paper_title = link_soup.find(class_='subtitle').text
+        
+        paper_type = link_soup.find(lambda tag:tag.name=="h3" and "Conference Event Type:" in tag.text).text
+        paper_type = paper_type.replace("Conference Event Type: ", "")
+        
+        paper_abstract = link_soup.find(class_ = 'abstract').text
+        paper_abstract = link_soup.find(class_ = 'abstract').text
+
         paper_authors = []
         paper_authors_tags = link_soup.find_all(class_='author')
         for auth in paper_authors_tags:
             paper_authors.append(auth.text)
         
-        paper_key = 'key_'+str(idx)
-        conf_dict[paper_key] = {'title': paper_title, 'authors': paper_authors, 'link': link, 'abstract': paper_abstract}
+        conf_dict[paper_id] = {
+        'conf_name': args.conf_name,
+        'year': year,
+        'link': link,
+        'type': paper_type,
+        'title': paper_title,
+        'authors': paper_authors,
+        'abstract': paper_abstract
+        }
         
-        print('Downloading paper {} {}'.format(paper_key, paper_title))
-        url = link + '.pdf'
-        savepath = "nips19_pdfs/" + paper_key + "_" + paper_title + ".pdf"
-        if not os.path.exists(savepath):
-            urllib.request.urlretrieve(url, savepath)
+        if args.getpdf:
+            print('Downloading paper {} {}'.format(paper_id, paper_title))
+            url = link + '.pdf'
+            savefile = savedir + "/" + paper_id + "_" + paper_title + ".pdf"
+            if not os.path.exists(savefile):
+                urllib.request.urlretrieve(url, savefile)
+
     except Exception as e:
+        errors = True
         print("Error Occured")
-        with open('log_errors.txt', 'w+') as f:
-            f.write("Exception: {} in paper link: {}".format(e, link))
+        error_dict[link] = e
+        with open('log_errors.txt', 'a') as f:
+            f.write("Exception: {} in paper link: {}\n\n".format(e, link))
 
 
-# Dump Dictionary to JSON
-json_dump = "data_nips" + args.year + ".json"
+# Dump Data Dictionary to JSON
+json_dump = args.conf_name + "_" + year + ".json"
 with open(json_dump, 'w') as file:
     json.dump(conf_dict, file)
+
+# Dump Error Dictionary to JSON
+if errors:
+    with open ("error_dict.json", "w") as f:
+        json.dump(error_dict, f)
