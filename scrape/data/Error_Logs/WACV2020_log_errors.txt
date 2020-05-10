@@ -1,0 +1,2 @@
+Exception: 'NoneType' object has no attribute 'text' in paper link: http://openaccess.thecvf.com/content_WACV_2020/html/B.V._Can_I_teach_a_robot_to_replicate_a_line_art_WACV_2020_paper.html
+

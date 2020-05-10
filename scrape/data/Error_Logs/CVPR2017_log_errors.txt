@@ -1,0 +1,4 @@
+Exception: 'NoneType' object has no attribute 'text' in paper link: http://openaccess.thecvf.com/content_cvpr_2017/html/Ilg_FlowNet_2.0_Evolution_CVPR_2017_paper.html
+
+Exception: 'NoneType' object has no attribute 'text' in paper link: http://openaccess.thecvf.com/content_cvpr_2017/html/Yuan_BigHand2.2M_Benchmark_Hand_CVPR_2017_paper.html
+

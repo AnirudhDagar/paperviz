@@ -1,0 +1,2 @@
+Exception: 'NoneType' object has no attribute 'text' in paper link: http://openaccess.thecvf.com/content_iccv_2017/html/R._Going_Unconstrained_With_ICCV_2017_paper.html
+

@@ -1,0 +1,6 @@
+Exception: 'NoneType' object has no attribute 'text' in paper link: http://openaccess.thecvf.com/content_ICCV_2019/html/Ye_Adversarial_Robustness_vs._Model_Compression_or_Both_ICCV_2019_paper.html
+
+Exception: 'NoneType' object has no attribute 'text' in paper link: http://openaccess.thecvf.com/content_ICCV_2019/html/Lee_Talking_With_Hands_16.2M_A_Large-Scale_Dataset_of_Synchronized_Body-Finger_ICCV_2019_paper.html
+
+Exception: 'NoneType' object has no attribute 'text' in paper link: http://openaccess.thecvf.com/content_ICCV_2019/html/Wang_Miss_Detection_vs._False_Alarm_Adversarial_Learning_for_Small_Object_ICCV_2019_paper.html
+

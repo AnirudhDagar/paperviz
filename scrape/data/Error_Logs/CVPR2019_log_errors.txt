@@ -1,0 +1,4 @@
+Exception: 'NoneType' object has no attribute 'text' in paper link: http://openaccess.thecvf.com/content_CVPR_2019/html/Gao_2.5D_Visual_Sound_CVPR_2019_paper.html
+
+Exception: 'NoneType' object has no attribute 'text' in paper link: http://openaccess.thecvf.com/content_CVPR_2019/html/Zhang_AET_vs._AED_Unsupervised_Representation_Learning_by_Auto-Encoding_Transformations_Rather_CVPR_2019_paper.html
+
