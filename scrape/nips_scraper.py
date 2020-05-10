@@ -84,8 +84,8 @@ for idx, link in enumerate(tqdm(paper_links)):
     except Exception as e:
         errors = True
         print("Error Occured")
-        error_dict[link] = e
-        with open('log_errors.txt', 'a') as f:
+        save_errors = conf_name + year + '_log_errors.txt'
+        with open(save_errors, 'a') as f:
             f.write("Exception: {} in paper link: {}\n\n".format(e, link))
 
 
@@ -93,8 +93,3 @@ for idx, link in enumerate(tqdm(paper_links)):
 json_dump = args.conf_name + "_" + year + ".json"
 with open(json_dump, 'w') as file:
     json.dump(conf_dict, file)
-
-# Dump Error Dictionary to JSON
-if errors:
-    with open ("error_dict.json", "w") as f:
-        json.dump(error_dict, f)
