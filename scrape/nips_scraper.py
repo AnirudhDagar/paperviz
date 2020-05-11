@@ -14,6 +14,7 @@ parser.add_argument('--url',
     default="https://papers.nips.cc/book/advances-in-neural-information-processing-systems-32-2019",
     help="URL for the conference website to be parsed.")
 
+parser.add_argument('--getinfo',     action='store_true',    default=False,      help="Get paper info and store in dictionary and dump as json")
 parser.add_argument('--getpdf',     action='store_true',    default=False,      help="Download all papers in pdf format")
 parser.add_argument('--conf_name',                          default="NeurIPS",  help="Save directory for downloading the papers")
 
@@ -53,26 +54,27 @@ for idx, link in enumerate(tqdm(paper_links)):
         
         paper_title = link_soup.find(class_='subtitle').text
         
-        paper_type = link_soup.find(lambda tag:tag.name=="h3" and "Conference Event Type:" in tag.text).text
-        paper_type = paper_type.replace("Conference Event Type: ", "")
-        
-        paper_abstract = link_soup.find(class_ = 'abstract').text
-        paper_abstract = link_soup.find(class_ = 'abstract').text
+        if args.getinfo:
+            paper_type = link_soup.find(lambda tag:tag.name=="h3" and "Conference Event Type:" in tag.text).text
+            paper_type = paper_type.replace("Conference Event Type: ", "")
+            
+            paper_abstract = link_soup.find(class_ = 'abstract').text
+            paper_abstract = link_soup.find(class_ = 'abstract').text
 
-        paper_authors = []
-        paper_authors_tags = link_soup.find_all(class_='author')
-        for auth in paper_authors_tags:
-            paper_authors.append(auth.text)
-        
-        conf_dict[paper_id] = {
-        'conf_name': args.conf_name,
-        'year': year,
-        'link': link,
-        'type': paper_type,
-        'title': paper_title,
-        'authors': paper_authors,
-        'abstract': paper_abstract
-        }
+            paper_authors = []
+            paper_authors_tags = link_soup.find_all(class_='author')
+            for auth in paper_authors_tags:
+                paper_authors.append(auth.text)
+            
+            conf_dict[paper_id] = {
+            'conf_name': args.conf_name,
+            'year': year,
+            'link': link,
+            'type': paper_type,
+            'title': paper_title,
+            'authors': paper_authors,
+            'abstract': paper_abstract
+            }
         
         if args.getpdf:
             print('Downloading paper {} {}'.format(paper_id, paper_title))
@@ -90,6 +92,7 @@ for idx, link in enumerate(tqdm(paper_links)):
 
 
 # Dump Data Dictionary to JSON
-json_dump = args.conf_name + "_" + year + ".json"
-with open(json_dump, 'w') as file:
-    json.dump(conf_dict, file)
+if args.getinfo:
+    json_dump = args.conf_name + "_" + year + ".json"
+    with open(json_dump, 'w') as file:
+        json.dump(conf_dict, file)

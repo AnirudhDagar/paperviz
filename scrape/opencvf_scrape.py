@@ -14,6 +14,7 @@ parser.add_argument('--url',
     default="http://openaccess.thecvf.com/CVPR2019.py",
     help="URL for the conference website to be parsed.")
 
+parser.add_argument('--getinfo',    action='store_true',    default=False,      help="Get paper info and store in dictionary and dump as json")
 parser.add_argument('--getpdf',     action='store_true',    default=False,      help="Download all papers in pdf format.")
 parser.add_argument('--conf_name',                          default="CVPR",     help="Name of the conference.")
 
@@ -57,19 +58,20 @@ for idx, link in enumerate(tqdm(paper_links)):
     
         paper_title = link_soup.find(id='papertitle').text[1:]
 
-        paper_abstract = link_soup.find(id='abstract').text[1:-1]
+        if args.getinfo:
+            paper_abstract = link_soup.find(id='abstract').text[1:-1]
 
-        paper_authors = link_soup.find(id='authors').text[1:].split(';')[0].replace(",  ", ",").split(',')
+            paper_authors = link_soup.find(id='authors').text[1:].split(';')[0].replace(",  ", ",").split(',')
 
-        conf_dict[paper_id] = {
-        'conf_name': args.conf_name,
-        'year': year,
-        'link': link,
-        'type': 'None',
-        'title': paper_title,
-        'authors': paper_authors,
-        'abstract': paper_abstract
-        }
+            conf_dict[paper_id] = {
+            'conf_name': args.conf_name,
+            'year': year,
+            'link': link,
+            'type': 'None',
+            'title': paper_title,
+            'authors': paper_authors,
+            'abstract': paper_abstract
+            }
 
         if args.getpdf:
             print('Downloading paper {} {}'.format(paper_id, paper_title))
@@ -88,6 +90,7 @@ for idx, link in enumerate(tqdm(paper_links)):
 
 
 # Dump Data Dictionary to JSON
-json_dump = args.conf_name + "_" + year + ".json"
-with open(json_dump, 'w') as file:
-    json.dump(conf_dict, file)
+if args.getinfo:
+    json_dump = args.conf_name + "_" + year + ".json"
+    with open(json_dump, 'w') as file:
+        json.dump(conf_dict, file)
