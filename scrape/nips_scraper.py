@@ -44,6 +44,7 @@ for url in urls:
 conf_dict = {}
 error_dict = {}
 errors = False
+save_errors = args.conf_name + year + '_log_errors.txt'
 
 for idx, link in enumerate(tqdm(paper_links)):
     try:
@@ -86,7 +87,6 @@ for idx, link in enumerate(tqdm(paper_links)):
     except Exception as e:
         errors = True
         print("Error Occured")
-        save_errors = conf_name + year + '_log_errors.txt'
         with open(save_errors, 'a') as f:
             f.write("Exception: {} in paper link: {}\n\n".format(e, link))
 
