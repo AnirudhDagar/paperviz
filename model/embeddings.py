@@ -3,11 +3,11 @@ import os
 import json
 import argparse
 import csv
-import tqdm
 import numpy
 import sklearn.manifold
 import torch
 import transformers
+from tqdm import tqdm
 
 ######### Arguments #########
 parser = argparse.ArgumentParser(description="PaperViz Embedding Creator")
