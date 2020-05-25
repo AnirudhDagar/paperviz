@@ -15,6 +15,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 0 35px;
 }
 
 #header .center {
@@ -53,8 +54,10 @@ body {
 }
 
 .main #graph {
-  width: 66vw;
-  height: 60vh;
+  /*width: 66vw;
+        height: 60vh;*/
+  width: 887px;
+  height: 454px;
   background-color: #3E5459;
   border-radius: 10px;
   margin-top: 80px;
@@ -64,18 +67,74 @@ body {
 }
 
 .main #filters {
-  width: 66vw;
-  max-width: 887px;
+  width: 887px;
   height: 35px;
-  margin: 45px 0px;
+  margin: 45px auto;
 }
 
 .main #results {
-  width: 66vw;
-  max-width: 887px;
-  height: 547px;
-  background-color: #FFFFFF;
+  /*width: 66vw;
+        max-width: 887px;
+        height: 547px;*/
+  width: 887px;
+  height: 546px;
+  background-color: #F5F7F9;
   border-radius: 10px;
+}
+
+.main #results .simplebar-scrollbar::before {
+  background-color: #8ABF54;
+  width: 5px;
+  margin: 5px 0px;
+}
+
+.main #results .simplebar-offset {
+  padding: 5px 0px;
+}
+
+.main #results .card {
+  width: 268px;
+  height: 243px;
+  background-color: #3E5459;
+  margin: 10px 13px;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  padding: 15px;
+}
+
+.main #results #render {
+  padding: 5px 0px !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-transform: translateX(-15px);
+          transform: translateX(-15px);
+  width: 103% !important;
+}
+
+.main #results p.title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.06rem;
+  color: #FFFFFF;
+}
+
+.main #results p.author {
+  font-family: "Open Sans", sans-serif;
+  font-size: 10px;
+  line-height: 12px;
+  color: #D8DDDE;
+  letter-spacing: 0.06rem;
+}
+
+.main #results .img-container {
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
 }
 
 #footer {
@@ -99,6 +158,7 @@ body {
   background: #c2d1d4;
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
 /* Handle on hover */
