@@ -62,7 +62,61 @@ class Conference():
 
 
     def cvpr(self):
-        pass
+        raw_urls=[]
+        for url in self.soup.find_all('a'):
+            raw_urls.append(url.get('href'))
+
+        paper_links=[]
+        for link in raw_urls:
+            try:
+                if link.endswith('_paper.html'):
+                    paper_links.append("http://openaccess.thecvf.com/"+link)
+            except:
+                pass
+
+
+        # Initialize Empty Dictionary
+        conf_dict = {}
+        save_errors = self.conf_name + self.year + '_log_errors.txt'
+
+        for idx, link in enumerate(tqdm(paper_links)):
+            try:
+                get_links = requests.get(link)
+                link_soup = BeautifulSoup(get_links.content, "html.parser")
+            
+                paper_id = self.year + str(idx)
+            
+                paper_title = link_soup.find(id='papertitle').text[1:]
+
+                if self.getinfo:
+                    paper_abstract = link_soup.find(id='abstract').text[1:-1]
+
+                    paper_authors = link_soup.find(id='authors').text[1:].split(';')[0].replace(",  ", ",").split(',')
+
+                    conf_dict[paper_id] = {
+                    'conf_name': self.conf_name,
+                    'year': self.year,
+                    'link': link,
+                    'type': 'None',
+                    'title': paper_title,
+                    'authors': paper_authors,
+                    'abstract': paper_abstract
+                    }
+
+                if self.getpdf:
+                    pdf_uri = link[:-5].replace('html', 'papers') + '.pdf'
+                    download_pdf(paper_id, paper_title, pdf_uri, savedir)
+
+
+            except Exception as e:
+                print("Error Occured")
+                with open(save_errors, 'a') as f:
+                    f.write(f"Exception: {e} in paper link: {link} \n\n")
+
+
+        # Dump Data Dictionary to JSON
+        if self.getinfo:
+            dump_json(self.conf_name, self.self.year, conf_dict)
 
 
     def emnlp(self):
@@ -129,7 +183,7 @@ class Conference():
                     
                     conf_dict[paper_id] = {
                     'conf_name': self.conf_name,
-                    'year': year,
+                    'year': self.year,
                     'link': link,
                     'type': paper_type,
                     'title': paper_title,
@@ -144,7 +198,7 @@ class Conference():
             except Exception as e:
                 print("Error Occured")
                 with open(save_errors, 'a') as f:
-                    f.write("Exception: {} in paper link: {}\n\n".format(e, link))
+                    f.write(f"Exception: {e} in paper link: {link} \n\n")
 
 
         # Dump Data Dictionary to JSON
@@ -229,8 +283,7 @@ def main():
 
     conf_list = ["AKBC", "ACL", "AISTATS", "CVPR", "EMNLP", "ICCV", "ICLR", "ICML", "KDD", "NAACL", "NeurIPS", "WACV"]
     url_list  = ["http://openaccess.thecvf.com/CVPR2019.py",
-                 "https://papers.nips.cc/book/advances-in-neural-information-processing-systems-32-2019",
-                 ""]
+                 "https://papers.nips.cc/book/advances-in-neural-information-processing-systems-32-2019"]
 
     conf_parser = Conference(args.conf_name, args.year, args.url, args.getinfo, args.getpdf)
     

@@ -14,7 +14,7 @@ parser.add_argument('--url',
     default="https://papers.nips.cc/book/advances-in-neural-information-processing-systems-32-2019",
     help="URL for the conference website to be parsed.")
 
-parser.add_argument('--getinfo',     action='store_true',    default=False,      help="Get paper info and store in dictionary and dump as json")
+parser.add_argument('--getinfo',    action='store_true',    default=False,      help="Get paper info and store in dictionary and dump as json")
 parser.add_argument('--getpdf',     action='store_true',    default=False,      help="Download all papers in pdf format")
 parser.add_argument('--conf_name',                          default="NeurIPS",  help="Save directory for downloading the papers")
 
