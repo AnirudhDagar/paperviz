@@ -42,8 +42,6 @@ for url in urls:
 
 # Initialize Empty Dictionary
 conf_dict = {}
-error_dict = {}
-errors = False
 save_errors = args.conf_name + year + '_log_errors.txt'
 
 for idx, link in enumerate(tqdm(paper_links)):
@@ -85,7 +83,6 @@ for idx, link in enumerate(tqdm(paper_links)):
                 urllib.request.urlretrieve(url, savefile)
 
     except Exception as e:
-        errors = True
         print("Error Occured")
         with open(save_errors, 'a') as f:
             f.write("Exception: {} in paper link: {}\n\n".format(e, link))
