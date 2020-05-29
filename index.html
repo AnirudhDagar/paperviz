@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paperviz</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+     <!--Bootstrap 4 CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!--Simplebar scrollbar-->
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@5.2.0/dist/simplebar.css"/>
+    <script src="https://unpkg.com/simplebar@5.2.0/dist/simplebar.min.js"></script>
+     
+</head>
+<body>
+    <div class="container-fluid" id="header">
+        <div class="logo">paperviz</div>
+        <div class="center">
+            <div class="dropdown" id="conf">
+                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                  Conferences
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">ICLR</a>
+                  <a class="dropdown-item" href="#">CAIML</a>
+                  <a class="dropdown-item" href="#">EMNLP</a>
+                </div>
+            </div>
+            <div class="dropdown" id="years">
+                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                  Years
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">2020</a>
+                  <a class="dropdown-item" href="#">2019</a>
+                  <a class="dropdown-item" href="#">2018</a>
+                </div>
+            </div>
+        </div>
+        <div class="search"><a href="#"><img src="styles/search_svg.svg" width="auto" height="auto"></a></div>
+    </div>
+    <div class="main">
+        <div class="container" id="graph"></div>
+        <div class="container" id="filters"></div>
+        <div class="container" data-simplebar data-simplebar-auto-hide="false" id="results">
+          <div class="container" id="render"></div>
+          <!--<div class="card">
+            <p class="title">ReMixMatch: Semi-Supervised Learning with Distribution Matching and Augmentation Anchoring</p>
+            <p class="author">David Berthelot, Nicholas Carlini, Ekin D. Cubuk, Alex Kurakin, Kihyuk Sohn, Han Zhang, Colin Raffel</p>
+            <div class="img-container"></div>
+           </div>-->
+         
+        </div>
+    </div>
+    <div class="container-fluid" id="footer"></div>
+
+    <script>
+      /*showing cards in the result box*/
+      //DEMO
+      var i=0;
+      for(i=0; i<10; i++) {
+        document.getElementById("render").innerHTML += `<div class="card">
+            <p class="title">ReMixMatch: Semi-Supervised Learning with Distribution Matching and Augmentation Anchoring</p>
+            <p class="author">David Berthelot, Nicholas Carlini, Ekin D. Cubuk, Alex Kurakin, Kihyuk Sohn, Han Zhang, Colin Raffel</p>
+            <div class="img-container"></div>
+           </div>`;
+      }
+       
+      
+    </script>
+        
+</body>
+</html>
