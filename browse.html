@@ -12,10 +12,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <!--Simplebar scrollbar-->
-    <link rel="stylesheet" href="https://unpkg.com/simplebar@5.2.0/dist/simplebar.css"/>
-    <script src="https://unpkg.com/simplebar@5.2.0/dist/simplebar.min.js"></script>
-     
 </head>
 <body>
     <div class="container-fluid" id="header">
@@ -23,11 +19,20 @@
         
         <div class="search"><a href="#"><img src="styles/search_svg.svg" width="auto" height="auto"></a></div>
     </div>
-    <div class="row container-fluid" id="wrapper">
-      <div class="col-lg-2" id="side-nav">
+    <div class="container-fluid" id="top-nav">
+        <ul>
+            <li><a href="#header">Back to Top</a></li>
+            <li><a href="#">Download CSV file</a></li>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </div>
+
+    </div>
+    <div class="row container-fluid" id="wrapper" style="margin-top: 0px;">
+      <div class="col-lg-2" id="side-nav2">
         <nav class="navbar " id="conf">
           <!-- Brand -->
-          <a class="navbar-brand" href="#" data-toggle="collapse" data-target="#collapsibleNavbar">Conferences</a>
+          <a class="navbar-brand" href="" data-toggle="collapse" data-target="#collapsibleNavbar">Conferences</a>
         
           <!-- Toggler/collapsibe Button -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -38,26 +43,26 @@
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">ICLR</a>
+                <a class="nav-link" href="">ICLR</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">NeurIPS</a>
+                <a class="nav-link" href="">NeurIPS</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">CVPR</a>
+                <a class="nav-link" href="">CVPR</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">ICCV</a>
+                <a class="nav-link" href="">ICCV</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">WACV</a>
+                <a class="nav-link" href="">WACV</a>
               </li>
             </ul>
           </div>
         </nav>
         <nav class="navbar " id="year">
           <!-- Brand -->
-          <a class="navbar-brand" href="#" data-toggle="collapse" data-target="#collapsibleNavbar2">Years</a>
+          <a class="navbar-brand" href="" data-toggle="collapse" data-target="#collapsibleNavbar2">Years</a>
         
           <!-- Toggler/collapsibe Button -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar2">
@@ -68,19 +73,19 @@
           <div class="collapse navbar-collapse" id="collapsibleNavbar2">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">2015</a>
+                <a class="nav-link" href="#">2015</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">2016</a>
+                <a class="nav-link" href="#">2016</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">2017</a>
+                <a class="nav-link" href="#">2017</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">2018</a>
+                <a class="nav-link" href="#">2018</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">2019</a>
+                <a class="nav-link" href="#">2019</a>
               </li>
             </ul>
           </div>
@@ -93,36 +98,11 @@
         </nav>
       </div>
       
-      <div class="main col-lg-10">
-        <div class="container" id="graph"></div>
-        
-        <div class="container" data-simplebar data-simplebar-auto-hide="false" id="results">
-          <div class="container" id="render"></div>
-          <!--<div class="card">
-            <p class="title">ReMixMatch: Semi-Supervised Learning with Distribution Matching and Augmentation Anchoring</p>
-            <p class="author">David Berthelot, Nicholas Carlini, Ekin D. Cubuk, Alex Kurakin, Kihyuk Sohn, Han Zhang, Colin Raffel</p>
-            <div class="img-container"></div>
-           </div>-->
-         
-        </div>
+      <div class="main col-lg-10 browser">
+          <div class="container" id="render2"></div>
       </div>
     </div>
-    <div class="container-fluid" id="footer"></div>
 
-    <script>
-      /*showing cards in the result box*/
-      //DEMO
-      var i=0;
-      for(i=0; i<10; i++) {
-        document.getElementById("render").innerHTML += `<div class="card">
-            <p class="title">ReMixMatch: Semi-Supervised Learning with Distribution Matching and Augmentation Anchoring</p>
-            <p class="author">David Berthelot, Nicholas Carlini, Ekin D. Cubuk, Alex Kurakin, Kihyuk Sohn, Han Zhang, Colin Raffel</p>
-            <div class="img-container"></div>
-           </div>`;
-      }
-       
-      
-    </script>
-        
+<div class="container-fluid" id="footer"></div>
 </body>
 </html>
