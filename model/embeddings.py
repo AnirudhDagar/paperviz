@@ -3,16 +3,17 @@ import os
 import json
 import argparse
 import csv
+from tqdm import tqdm
 import numpy
 import sklearn.manifold
 import torch
 import transformers
-from tqdm import tqdm
 
 ######### Arguments #########
 parser = argparse.ArgumentParser(description="PaperViz Embedding Creator")
 
 parser.add_argument('--data', default="../scrape/data/ICLR/ICLR_2020.json", help="File Path for the conference json data")
+parser.add_argument('--model', default="sent_bert", help="Choose sent_bert or sci_bert as the model." )
 
 args = parser.parse_args()
 #############################
@@ -33,15 +34,20 @@ abstract_keys = list(papers.keys())
 for k, v in papers.items():
     abstracts.append(v["content"]["abstract"])
 
-save_file_emb = conf_name + "_embeddings.torch"
+save_file_emb = conf_name + "_" + args.model + "_embeddings.torch"
 
 
 if not os.path.exists(save_file_emb):
     print("Initializing tokenizer and model")
-    # Use Pretrained deepset sentencebert tokenizer & model
-    tokenizer = transformers.AutoTokenizer.from_pretrained("deepset/sentence_bert")
+    # Use Pretrained tokenizer & model
+    if args.model=="sent_bert":
+        tokenizer = transformers.AutoTokenizer.from_pretrained("deepset/sentence_bert")
+        model = transformers.AutoModel.from_pretrained("deepset/sentence_bert")
 
-    model = transformers.AutoModel.from_pretrained("deepset/sentence_bert")
+    elif args.model == "sci_bert":
+        tokenizer = transformers.AutoTokenizer.from_pretrained("allenai/scibert_scivocab_uncased")
+        model = transformers.AutoModel.from_pretrained("allenai/scibert_scivocab_uncased")
+    
     model.eval()
 
     emb = torch.zeros(len(abstracts), 768)
@@ -66,6 +72,6 @@ for i, key in enumerate(papers.keys()):
 
 
 print("Saving 2D TSNE Embeddings with Unique Paper Identification Keys...")
-save_file_keys_emb2d = conf_name + "_Keys_2D_Embeddings.json" 
+save_file_keys_emb2d = conf_name + "_" + args.model + "_Keys_2D_Embeddings.json" 
 with open(save_file_keys_emb2d, 'w') as outfile:
     json.dump(keys_emb2d, outfile)
