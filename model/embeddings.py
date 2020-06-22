@@ -12,8 +12,14 @@ import transformers
 ######### Arguments #########
 parser = argparse.ArgumentParser(description="PaperViz Embedding Creator")
 
-parser.add_argument('--data', default="../scrape/data/ICLR/ICLR_2020.json", help="File Path for the conference json data")
-parser.add_argument('--model', default="sent_bert", help="Choose sent_bert or sci_bert as the model." )
+parser.add_argument(
+    "--data",
+    default="../scrape/data/ICLR/ICLR_2020.json",
+    help="File Path for the conference json data",
+)
+parser.add_argument(
+    "--model", default="sent_bert", help="Choose sent_bert or sci_bert as the model."
+)
 
 args = parser.parse_args()
 #############################
@@ -40,14 +46,18 @@ save_file_emb = conf_name + "_" + args.model + "_embeddings.torch"
 if not os.path.exists(save_file_emb):
     print("Initializing tokenizer and model")
     # Use Pretrained tokenizer & model
-    if args.model=="sent_bert":
+    if args.model == "sent_bert":
         tokenizer = transformers.AutoTokenizer.from_pretrained("deepset/sentence_bert")
         model = transformers.AutoModel.from_pretrained("deepset/sentence_bert")
 
     elif args.model == "sci_bert":
-        tokenizer = transformers.AutoTokenizer.from_pretrained("allenai/scibert_scivocab_uncased")
-        model = transformers.AutoModel.from_pretrained("allenai/scibert_scivocab_uncased")
-    
+        tokenizer = transformers.AutoTokenizer.from_pretrained(
+            "allenai/scibert_scivocab_uncased"
+        )
+        model = transformers.AutoModel.from_pretrained(
+            "allenai/scibert_scivocab_uncased"
+        )
+
     model.eval()
 
     emb = torch.zeros(len(abstracts), 768)
@@ -68,10 +78,10 @@ emb2d = sklearn.manifold.TSNE(n_components=2).fit_transform(emb.numpy())
 
 keys_emb2d = []
 for i, key in enumerate(papers.keys()):
-    keys_emb2d.append({"id": key, "pos" : emb2d[i].tolist()})
+    keys_emb2d.append({"id": key, "pos": emb2d[i].tolist()})
 
 
 print("Saving 2D TSNE Embeddings with Unique Paper Identification Keys...")
-save_file_keys_emb2d = conf_name + "_" + args.model + "_Keys_2D_Embeddings.json" 
-with open(save_file_keys_emb2d, 'w') as outfile:
+save_file_keys_emb2d = conf_name + "_" + args.model + "_Keys_2D_Embeddings.json"
+with open(save_file_keys_emb2d, "w") as outfile:
     json.dump(keys_emb2d, outfile)
