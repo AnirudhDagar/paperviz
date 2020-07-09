@@ -1,11 +1,11 @@
 
-let requestURL = '/scrape/data/NeurIPS/NeurIPS_2015.json';
-/*function getUrl (conf, year) {
-    let requestURL = '/scrape/data/' + conf + '/' + conf + '_' + year + '.json';
-    loadJson(requestURL);
-}*/
-
-//function loadJson (requestURL) {
+//let requestURL = '/scrape/data/NeurIPS/NeurIPS_2015.json';
+var requestURL = '';
+getUrl('NeurIPS', '2015');
+function getUrl (conf, year) {
+    requestURL = '/scrape/data/' + conf + '/' + conf + '_' + year + '.json';
+    
+}
     let request = new XMLHttpRequest();
     request.open('GET', requestURL);
     request.responseType = 'json';
@@ -15,7 +15,7 @@ let requestURL = '/scrape/data/NeurIPS/NeurIPS_2015.json';
         populateMain(mypapers);
     
     }
-//}
+
 
 function populateMain(jsonObj) {
 
