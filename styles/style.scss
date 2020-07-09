@@ -28,30 +28,25 @@ body {background-color: $c1 !important;}
 .navbar {
     span {color: $c2;}
     button {transform: translateX(-30px);}
-    padding: 35px 0 0 35px !important;
+    padding: 35px 0 0 30px !important;
     a:hover {color: $c2;}
     button:active, button:focus {outline: none;}
 }
 
-#year {
-    padding-top: 10px !important;
-}
 .main {
     #graph {
-        /*width: 66vw;
-        height: 60vh;*/
+        margin-left: 45px;
         width: 887px;
         height: 454px;
+        padding: 0;
         background-color: $c2;
         border-radius: 10px;
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
     }
     
     #results {
-        /*width: 66vw;
-        max-width: 887px;
-        height: 547px;*/
         margin-top: 10px;
+        margin-left: 45px;
         width: 887px;
         height: 700px; 
         background-color: #F5F7F9;
@@ -190,4 +185,26 @@ body {background-color: $c1 !important;}
         padding: 15px;
     }
     
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  opacity: 0.8;
+  fill: $c1;
+}
+.dot:hover {stroke: #000;}
+
+.tooltip {
+  position: absolute;
+  width: fit-content;
+  justify-content: center;
+  height: 50px;
+  pointer-events: none;
+  background-color: white;
+
 }
