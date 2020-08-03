@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paperviz</title>
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <script src="scripts/index.js"></script>
      <!--Bootstrap 4 CDN-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!--ag grid-->
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-alpine.css">
+
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
     <div class="container-fluid" id="header">
@@ -43,40 +47,40 @@
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">AKBC</a>
+                <a class="nav-link na">AKBC</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">ACL</a>
+                <a class="nav-link na">ACL</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">AISTATS</a>
+                <a class="nav-link na">AISTATS</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">CVPR</a>
+                <a class="nav-link" id="allcvpr">CVPR</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">EMNLP</a>
+                <a class="nav-link na">EMNLP</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">ICCV</a>
+                <a class="nav-link" id="alliccv">ICCV</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">ICLR</a>
+                <a class="nav-link na">ICLR</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">ICML</a>
+                <a class="nav-link na">ICML</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">KDD</a>
+                <a class="nav-link na">KDD</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">NAACL</a>
+                <a class="nav-link na">NAACL</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">NeurIPS</a>
+                <a class="nav-link" id="allneur">NeurIPS</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="browse.html">WACV</a>
+                <a class="nav-link" id="allwacv">WACV</a>
               </li>
             </ul>
           </div>
@@ -111,19 +115,19 @@
             </ul>
           </div>
         </nav>
-        <nav class="navbar " id="fil">
-          <a class="navbar-brand" href="#">Filters</a>
-          <button class="navbar-toggler" type="button">
-            <span class="fas fa-caret-down"></span>
-          </button>
-        </nav>
       </div>
       
       <div class="main col-lg-10 browser">
           <div class="container" id="render2"></div>
+          <div id="myGrid" style="height: 1000px; width:auto" class="ag-theme-alpine">
+          <div class="ag-root-wrapper">
+            <span style="padding: 1rem;">Please Select an option from the nav-bar on left</span>
+          </div>
+        </div>
       </div>
     </div>
-
+  
 <div class="container-fluid" id="footer"></div>
+<script src="scripts/browse.js"></script>
 </body>
 </html>

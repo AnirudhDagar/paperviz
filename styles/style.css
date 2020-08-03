@@ -29,10 +29,20 @@ body {
   min-height: 90vh;
 }
 
-.navbar-brand, .nav-link {
+.navbar-brand,
+.nav-link {
   font-family: "Montserrat", sans-serif;
   font-size: 14px !important;
   color: #3E5459;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transform: translateX(4px);
+          transform: translateX(4px);
+  -webkit-transition: 0.2s ease-in;
+  transition: 0.2s ease-in;
 }
 
 .navbar {
@@ -52,7 +62,8 @@ body {
   color: #3E5459;
 }
 
-.navbar button:active, .navbar button:focus {
+.navbar button:active,
+.navbar button:focus {
   outline: none;
 }
 
@@ -72,7 +83,7 @@ body {
   margin-left: 45px;
   width: 887px;
   height: 700px;
-  background-color: #F5F7F9;
+  background-color: #f5f7f9;
   border-radius: 10px;
 }
 
@@ -121,7 +132,7 @@ body {
   font-family: "Open Sans", sans-serif;
   font-size: 10px;
   line-height: 12px;
-  color: #D8DDDE;
+  color: #d8ddde;
   letter-spacing: 0.06rem;
 }
 
@@ -212,7 +223,7 @@ body {
   font-family: "Open Sans", sans-serif;
   font-size: 10px;
   line-height: 12px;
-  color: #D8DDDE;
+  color: #d8ddde;
   letter-spacing: 0.06rem;
 }
 
@@ -260,5 +271,13 @@ body {
   height: 50px;
   pointer-events: none;
   background-color: white;
+}
+
+.ag-theme-alpine {
+  font-family: "Open Sans", sans-serif !important;
+}
+
+.ag-row {
+  font-size: 13px !important;
 }
 /*# sourceMappingURL=style.css.map */
