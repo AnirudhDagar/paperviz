@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Paperviz</title>
+    <script src="https://d3js.org/d3.v4.js"></script>
+
     <!--Bootstrap 4 CDN-->
     <link
       rel="stylesheet"
@@ -24,8 +26,15 @@
       href="https://unpkg.com/simplebar@5.2.0/dist/simplebar.css"
     />
     <script src="https://unpkg.com/simplebar@5.2.0/dist/simplebar.min.js"></script>
-
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <style>
+      .selected {
+        opacity: 1 !important;
+        stroke: black;
+        stroke-width: 2px;
+        r: 4px;
+      }
+    </style>
   </head>
   <body>
     <div class="container-fluid" id="header">
@@ -169,20 +178,7 @@
       </div>
     </div>
     <div class="container-fluid" id="footer"></div>
-
-    <script>
-      /*showing cards in the result box*/
-      //DEMO
-      var i = 0;
-      for (i = 0; i < 10; i++) {
-        document.getElementById("render").innerHTML += `<div class="card">
-            <p class="title">ReMixMatch: Semi-Supervised Learning with Distribution Matching and Augmentation Anchoring</p>
-            <p class="author">David Berthelot, Nicholas Carlini, Ekin D. Cubuk, Alex Kurakin, Kihyuk Sohn, Han Zhang, Colin Raffel</p>
-            <div class="img-container"></div>
-           </div>`;
-      }
-    </script>
-    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
     <script src="scripts/vis.js"></script>
   </body>
 </html>
