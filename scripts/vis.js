@@ -94,3 +94,24 @@ d3.csv(
     }
   }
 );
+
+let request = new XMLHttpRequest();
+request.open(
+  "GET",
+  "https://raw.githubusercontent.com/AnirudhDagar/paperviz/master/extra/iclr_2020_all_sci_bert.json?token=AOK3RGTTTS2K4JBQLQJ6FP27HEMPS"
+);
+request.responseType = "json";
+request.send();
+request.onload = function () {
+  const myData = request.response;
+  var coords = [];
+  for (let key in myData) {
+    if (myData.hasOwnProperty(key)) {
+      for (let id in myData[key]) {
+        coords = myData[key][id].embedding;
+        console.log(coords);
+      }
+    }
+    break;
+  }
+};
