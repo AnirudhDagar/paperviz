@@ -71,7 +71,7 @@ body {
     background-color: #f5f7f9;
     border-radius: 10px;
     .simplebar-scrollbar::before {
-      background-color: $c3;
+      background-color: rgba($color: $c2, $alpha: 0.5);
       width: 5px;
       margin: 5px 0px;
     }
@@ -137,8 +137,6 @@ body {
 ::-webkit-scrollbar-thumb {
   background: lighten($color: $c2, $amount: 50);
   border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
 /* Handle on hover */
