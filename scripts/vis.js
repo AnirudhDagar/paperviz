@@ -55,10 +55,10 @@ d3.json(
       .attr("cy", function (d) {
         return y(d.embedding_specter[1]);
       })
-      .attr("r", 1)
+      .attr("r", 3.5)
       .attr("class", "dot")
       .style("fill", "#69b3a2")
-      .style("opacity", 0.5)
+      .style("opacity", 0.7)
       .style("stroke", "white");
 
     // Function that is triggered when brushing is performed
