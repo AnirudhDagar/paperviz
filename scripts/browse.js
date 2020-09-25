@@ -122,7 +122,7 @@ function populateMain(jsonObj) {
       field: "link",
       cellRenderer: function (params) {
         return (
-          "<a href=" + params.value + 'target="_blank">' + params.value + "</a>"
+          "<a href=" + params.value + ' target="_blank">' + params.value + "</a>"
         );
       },
       maxWidth: 200,
