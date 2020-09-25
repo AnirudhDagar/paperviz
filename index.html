@@ -25,13 +25,24 @@
       href="https://unpkg.com/simplebar@5.2.0/dist/simplebar.css"
     />
     <script src="https://unpkg.com/simplebar@5.2.0/dist/simplebar.min.js"></script>
+    <!--ag grid-->
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-alpine.css"
+    />
+
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
     <style>
       .selected {
         opacity: 1 !important;
         stroke: black;
         stroke-width: 2px;
-        r: 4px;
+        r: 5px;
       }
     </style>
   </head>
@@ -46,9 +57,8 @@
       </div>
     </div>
     <div class="row container-fluid" id="wrapper">
-      <div class="main col-lg-10">
+      <div class="main row">
         <div class="container" id="graph"></div>
-
         <div
           class="container"
           data-simplebar
@@ -58,6 +68,14 @@
           <div class="container" id="render"></div>
         </div>
       </div>
+    </div>
+    <div class="row" style="width: 100%">
+      <div
+        id="myGrid"
+        style="height: 500px; width: 92vw; margin: auto; margin-left: 5vw"
+        class="ag-theme-alpine"
+      ></div>
+      <div class="ag-root-wrapper"></div>
     </div>
     <div class="container-fluid" id="footer"></div>
     <script src="https://d3js.org/d3.v4.js"></script>

@@ -109,7 +109,7 @@ function populateMain(jsonObj) {
       flex: 1,
     },
     {
-      headerName: "Abstract",
+      headerName: "Keywords",
       field: "abstract",
       sortable: true,
       filter: true,
