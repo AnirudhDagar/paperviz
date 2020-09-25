@@ -55,8 +55,8 @@ body {
 .main {
   #graph {
     margin-left: 45px;
-    width: 887px;
-    height: 454px;
+    width: 60vw;
+    height: 80vh;
     padding: 0;
     background-color: $c2;
     border-radius: 10px;
@@ -66,8 +66,8 @@ body {
   #results {
     margin-top: 10px;
     margin-left: 45px;
-    width: 887px;
-    height: 700px;
+    width: 30vw;
+    height: 80vh;
     background-color: #f5f7f9;
     border-radius: 10px;
     .simplebar-scrollbar::before {
@@ -217,7 +217,7 @@ body {
   stroke: #000;
 }
 
-.tooltip {
+.tooltip2 {
   position: absolute;
   width: fit-content;
   justify-content: center;
@@ -232,4 +232,40 @@ body {
 
 .ag-row {
   font-size: 13px !important;
+}
+
+.tick {
+  display: none;
+}
+
+.domain {
+  display: none;
+}
+
+.tooltip {
+  height: auto;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+.tt-card {
+  width: 268px;
+  height: auto;
+  background-color: $c1;
+  padding: 15px;
+  p.title {
+    font-family: $ff1;
+    font-size: 14px;
+    line-height: 21px;
+    color: $c2;
+  }
+  p.author {
+    font-family: $ff1;
+    font-size: 12px;
+    line-height: 18px;
+    color: $c2;
+  }
 }
