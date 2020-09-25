@@ -1,3 +1,4 @@
+var rowData = [];
 // set the dimensions and margins of the graph
 var margin = { top: 10, right: 30, bottom: 30, left: 60 },
   width = window.innerWidth * 0.6 - margin.left - margin.right,
@@ -88,14 +89,15 @@ d3.json(
       var d_brushed = d3.selectAll(".selected").data();
 
       $("#render").empty();
-      for (var i = 0; i < d_brushed.length; i++) {
+      rowData = [];
+      d_brushed.forEach((d) => handleTable(d));
+      d_brushed.forEach((d) => {
         document.getElementById("render").innerHTML += `<div class="card">
-            <p class="title">${d_brushed[i].title}</p>
-            <p class="author">${d_brushed[i].authors.join(", ")}</p>
+            <p class="title">${d.title}</p>
+            <p class="author">${d.authors.join(", ")}</p>
             <div class="img-container"></div>
            </div>`;
-        console.log(d_brushed[i].embedding_specter);
-      }
+      });
     }
   }
 );
@@ -108,7 +110,7 @@ const _tooltip = function _tooltip(selection) {
     .style("opacity", 0);
   selection
     .on("mouseover.tooltip", function (d) {
-      div.style("opacity", "1");
+      div.style("opacity", "1").style("z-index", "100");
       div
         .style("left", d3.event.pageX + 10 + "px")
         .style("top", d3.event.pageY - 100 + "px");
@@ -117,9 +119,81 @@ const _tooltip = function _tooltip(selection) {
         <p class="author">${d.authors.join(", ")}</p>
         <div class="img-container"></div>
        </div>`;
-      console.log(d);
     })
     .on("mouseout.tooltip", function () {
-      div.style("opacity", "0");
+      div.style("opacity", "0").style("z-index", "-100");
     });
 };
+
+function handleTable(data) {
+  const grid = document.querySelector(".ag-root-wrapper");
+  if (grid) {
+    grid.remove();
+  }
+  rowData.push({
+    title: data.title,
+    author: data.authors.join(", "),
+    abstract: data.abstract,
+    link: data.link,
+  });
+
+  var columnDefs = [
+    {
+      headerName: "Title",
+      field: "title",
+      sortable: true,
+      filter: true,
+      tooltipField: "title",
+      flex: 1,
+    },
+    {
+      headerName: "Authors",
+      field: "author",
+      sortable: true,
+      filter: true,
+      tooltipField: "author",
+      flex: 1,
+    },
+    {
+      headerName: "Keywords",
+      field: "abstract",
+      sortable: true,
+      filter: true,
+      tooltipField: "abstract",
+      minWidth: 400,
+      flex: 2,
+    },
+    {
+      headerName: "Link",
+      field: "link",
+      cellRenderer: function (params) {
+        return (
+          "<a href=" + params.value + 'target="_blank">' + params.value + "</a>"
+        );
+      },
+      maxWidth: 200,
+      flex: 1,
+      floatingFilter: false,
+    },
+  ];
+
+  var gridOptions = {
+    columnDefs: columnDefs,
+    rowData: rowData,
+    enableBrowserTooltips: true,
+    onFirstDataRendered: onFirstDataRendered,
+    pagination: true,
+    defaultColDef: {
+      resizable: true,
+      floatingFilter: true,
+      filter: "agNumberColumnFilter",
+    },
+  };
+
+  var eGridDiv = document.querySelector("#myGrid");
+  new agGrid.Grid(eGridDiv, gridOptions);
+
+  function onFirstDataRendered(params) {
+    params.api.sizeColumnsToFit();
+  }
+}
