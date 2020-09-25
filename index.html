@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Paperviz</title>
-    <script src="https://d3js.org/d3.v4.js"></script>
 
     <!--Bootstrap 4 CDN-->
     <link
@@ -47,118 +46,6 @@
       </div>
     </div>
     <div class="row container-fluid" id="wrapper">
-      <div class="col-lg-2" id="side-nav">
-        <nav class="navbar" id="conf">
-          <!-- Brand -->
-          <a
-            class="navbar-brand"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapsibleNavbar"
-            >Conferences</a
-          >
-
-          <!-- Toggler/collapsibe Button -->
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#collapsibleNavbar"
-          >
-            <span class="fas fa-caret-down"></span>
-          </button>
-
-          <!-- Navbar links -->
-          <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">AKBC</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">ACL</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">AISTATS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">CVPR</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">EMNLP</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">ICCV</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">ICLR</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">ICML</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">KDD</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">NAACL</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">NeurIPS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">WACV</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-        <nav class="navbar" id="year">
-          <!-- Brand -->
-          <a
-            class="navbar-brand"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapsibleNavbar2"
-            >Years</a
-          >
-
-          <!-- Toggler/collapsibe Button -->
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#collapsibleNavbar2"
-          >
-            <span class="fas fa-caret-down"></span>
-          </button>
-
-          <!-- Navbar links -->
-          <div class="collapse navbar-collapse" id="collapsibleNavbar2">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">2015</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">2016</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">2017</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">2018</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="browse.html">2019</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-        <nav class="navbar" id="fil">
-          <a class="navbar-brand" href="#">Filters</a>
-          <button class="navbar-toggler" type="button">
-            <span class="fas fa-caret-down"></span>
-          </button>
-        </nav>
-      </div>
-
       <div class="main col-lg-10">
         <div class="container" id="graph"></div>
 
@@ -169,15 +56,11 @@
           id="results"
         >
           <div class="container" id="render"></div>
-          <!--<div class="card">
-            <p class="title">ReMixMatch: Semi-Supervised Learning with Distribution Matching and Augmentation Anchoring</p>
-            <p class="author">David Berthelot, Nicholas Carlini, Ekin D. Cubuk, Alex Kurakin, Kihyuk Sohn, Han Zhang, Colin Raffel</p>
-            <div class="img-container"></div>
-           </div>-->
         </div>
       </div>
     </div>
     <div class="container-fluid" id="footer"></div>
+    <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
     <script src="scripts/vis.js"></script>
   </body>
