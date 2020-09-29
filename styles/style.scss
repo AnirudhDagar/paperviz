@@ -272,3 +272,17 @@ body {
     color: $c2;
   }
 }
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#search-ip {
+  width: 300px;
+}
+
+.search-btn {
+  cursor: pointer;
+}

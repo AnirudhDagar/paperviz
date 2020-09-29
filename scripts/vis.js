@@ -99,6 +99,31 @@ d3.json(
            </div>`;
       });
     }
+
+    document.querySelector(".search-btn").addEventListener("click", search);
+    document.querySelector("#search-ip").addEventListener("keyup", (e) => {
+      if (e.keyCode === 13) {
+        search();
+      }
+    });
+    document.querySelector("body").addEventListener("click", () => {
+      document.querySelectorAll(".dot:not(.selected)").forEach((d) => {
+        d.style.opacity = 0.7;
+      });
+    });
+
+    function search() {
+      let search_q = document.querySelector("#search-ip").value.toLowerCase();
+      myDots.classed("selected", (d) => {
+        return (
+          d.title.toLowerCase().search(search_q) != -1 ||
+          d.abstract.toLowerCase().search(search_q) != -1
+        );
+      });
+      document.querySelectorAll(".dot:not(.selected)").forEach((d) => {
+        d.style.opacity = 0.2;
+      });
+    }
   }
 );
 
