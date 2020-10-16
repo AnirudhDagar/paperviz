@@ -1,3 +1,4 @@
+
 var rowData = [];
 // set the dimensions and margins of the graph
 var margin = { top: 10, right: 30, bottom: 30, left: 60 },
@@ -15,7 +16,7 @@ var svg = d3
 
 //Read the data
 d3.json(
-  "https://raw.githubusercontent.com/AnirudhDagar/paperviz/master/extra/iclr_2020_all_embed.json?token=AOK3RGSHYG367TLMPAYUCNK7OSW7K",
+  "https://raw.githubusercontent.com/AnirudhDagar/paperviz/master/extra/iclr_2020_all_embed_with_images_large.json?token=AOK3RGUUSA5A4MAD7PP6DAC7SMPFM",
   function (data) {
     // Add X axis
     var x = d3.scaleLinear().domain([-45, 40]).range([0, width]);
@@ -95,8 +96,9 @@ d3.json(
         document.getElementById("render").innerHTML += `<div class="card">
             <p class="title">${d.title}</p>
             <p class="author">${d.authors.join(", ")}</p>
-            <div class="img-container"></div>
+            <div class="img-container"><img class='tooltip-img' src='${d.img_large}' alt=${d.title.split(' ').join('_')}/></div>
            </div>`;
+           imageModal();
       });
     }
 
@@ -142,7 +144,7 @@ const _tooltip = function _tooltip(selection) {
       document.querySelector(".tooltip").innerHTML = `<div class="tt-card">
         <p class="title">${d.title}</p>
         <p class="author">${d.authors.join(", ")}</p>
-        <div class="img-container"></div>
+        <div class="img-container"><img class='tooltip-img' src='${d.img_large}' alt=${d.title}/></div>
        </div>`;
     })
     .on("mouseout.tooltip", function () {
